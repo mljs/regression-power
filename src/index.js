@@ -1,10 +1,14 @@
-import BaseRegression, { checkArrayLength, maybeToPrecision } from 'ml-regression-base';
+import BaseRegression, {
+  checkArrayLength,
+  maybeToPrecision
+} from 'ml-regression-base';
 import SimpleLinearRegression from 'ml-regression-simple-linear';
 
 export default class PowerRegression extends BaseRegression {
   constructor(x, y) {
     super();
-    if (x === true) { // reloading model
+    if (x === true) {
+      // reloading model
       this.A = y.A;
       this.B = y.B;
     } else {
@@ -17,6 +21,10 @@ export default class PowerRegression extends BaseRegression {
     return this.A * Math.pow(newInputs, this.B);
   }
 
+  predictFct() {
+    return new Function('x', `return ${this.A} * Math.pow(x, ${this.B})`);
+  }
+
   toJSON() {
     return {
       name: 'powerRegression',
@@ -26,14 +34,23 @@ export default class PowerRegression extends BaseRegression {
   }
 
   toString(precision) {
-    return `f(x) = ${maybeToPrecision(this.A, precision)} * x^${maybeToPrecision(this.B, precision)}`;
+    return `f(x) = ${maybeToPrecision(
+      this.A,
+      precision
+    )} * x^${maybeToPrecision(this.B, precision)}`;
   }
 
   toLaTeX(precision) {
     if (this.B >= 0) {
-      return `f(x) = ${maybeToPrecision(this.A, precision)}x^{${maybeToPrecision(this.B, precision)}}`;
+      return `f(x) = ${maybeToPrecision(
+        this.A,
+        precision
+      )}x^{${maybeToPrecision(this.B, precision)}}`;
     } else {
-      return `f(x) = \\frac{${maybeToPrecision(this.A, precision)}}{x^{${maybeToPrecision(-this.B, precision)}}}`;
+      return `f(x) = \\frac{${maybeToPrecision(
+        this.A,
+        precision
+      )}}{x^{${maybeToPrecision(-this.B, precision)}}}`;
     }
   }
 

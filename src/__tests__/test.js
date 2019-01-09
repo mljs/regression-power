@@ -48,6 +48,9 @@ describe('Power regression', () => {
 
     expect(regression.predict(4)).toStrictEqual(0.25);
 
+    let predictFct = regression.predictFct();
+    expect(predictFct(4)).toStrictEqual(0.25);
+
     const model = regression.toJSON();
     expect(model).toStrictEqual({
       name: 'powerRegression',
