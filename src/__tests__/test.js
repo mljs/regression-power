@@ -55,4 +55,16 @@ describe('Power regression', () => {
       B: -1
     });
   });
+
+  it('test latex formatting of big / small numbers', () => {
+    const regression = PowerRegression.load({
+      name: 'powerRegression',
+      A: 1000000000,
+      B: -0.000000001
+    });
+
+    expect(regression.toLaTeX(4)).toStrictEqual(
+      'f(x) = \\frac{1.000e^{+9}}{x^{1.000e^{-9}}}'
+    );
+  });
 });
