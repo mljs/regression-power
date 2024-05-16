@@ -1,10 +1,11 @@
-import BaseRegression, {
+import {
+  BaseRegression,
   checkArrayLength,
   maybeToPrecision
 } from 'ml-regression-base';
-import SimpleLinearRegression from 'ml-regression-simple-linear';
+import { SimpleLinearRegression } from 'ml-regression-simple-linear';
 
-export default class PowerRegression extends BaseRegression {
+export class PowerRegression extends BaseRegression {
   constructor(x, y) {
     super();
     if (x === true) {
@@ -18,7 +19,7 @@ export default class PowerRegression extends BaseRegression {
   }
 
   _predict(newInputs) {
-    return this.A * Math.pow(newInputs, this.B);
+    return this.A * newInputs ** this.B;
   }
 
   toJSON() {
