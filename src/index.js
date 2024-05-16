@@ -1,7 +1,7 @@
 import {
   BaseRegression,
   checkArrayLength,
-  maybeToPrecision
+  maybeToPrecision,
 } from 'ml-regression-base';
 import { SimpleLinearRegression } from 'ml-regression-simple-linear';
 
@@ -26,14 +26,14 @@ export class PowerRegression extends BaseRegression {
     return {
       name: 'powerRegression',
       A: this.A,
-      B: this.B
+      B: this.B,
     };
   }
 
   toString(precision) {
     return `f(x) = ${maybeToPrecision(
       this.A,
-      precision
+      precision,
     )} * x^${maybeToPrecision(this.B, precision)}`;
   }
 
@@ -42,12 +42,12 @@ export class PowerRegression extends BaseRegression {
     if (this.B >= 0) {
       latex = `f(x) = ${maybeToPrecision(
         this.A,
-        precision
+        precision,
       )}x^{${maybeToPrecision(this.B, precision)}}`;
     } else {
       latex = `f(x) = \\frac{${maybeToPrecision(
         this.A,
-        precision
+        precision,
       )}}{x^{${maybeToPrecision(-this.B, precision)}}}`;
     }
     latex = latex.replace(/e([+-]?[0-9]+)/g, 'e^{$1}');

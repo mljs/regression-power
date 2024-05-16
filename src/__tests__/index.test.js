@@ -4,23 +4,14 @@ describe('Power regression', () => {
   it('basic test', () => {
     const x = [17.6, 26, 31.9, 38.9, 45.8, 51.2, 58.1, 64.7, 66.7, 80.8, 82.9];
     const y = [
-      159.9,
-      206.9,
-      236.8,
-      269.9,
-      300.6,
-      323.6,
-      351.7,
-      377.6,
-      384.1,
-      437.2,
-      444.7
+      159.9, 206.9, 236.8, 269.9, 300.6, 323.6, 351.7, 377.6, 384.1, 437.2,
+      444.7,
     ];
     const result = new PowerRegression(x, y);
 
     const expected = {
       A: 24.12989312,
-      B: 0.65949782
+      B: 0.65949782,
     };
     expect(result.A).toBeCloseTo(expected.A, 10e-4);
     expect(result.B).toBeCloseTo(expected.B, 10e-4);
@@ -43,7 +34,7 @@ describe('Power regression', () => {
     const regression = PowerRegression.load({
       name: 'powerRegression',
       A: 1,
-      B: -1
+      B: -1,
     });
 
     expect(regression.predict(4)).toStrictEqual(0.25);
@@ -52,7 +43,7 @@ describe('Power regression', () => {
     expect(model).toStrictEqual({
       name: 'powerRegression',
       A: 1,
-      B: -1
+      B: -1,
     });
   });
 
@@ -60,11 +51,11 @@ describe('Power regression', () => {
     const regression = PowerRegression.load({
       name: 'powerRegression',
       A: 1000000000,
-      B: -0.000000001
+      B: -0.000000001,
     });
 
     expect(regression.toLaTeX(4)).toStrictEqual(
-      'f(x) = \\frac{1.000e^{+9}}{x^{1.000e^{-9}}}'
+      'f(x) = \\frac{1.000e^{+9}}{x^{1.000e^{-9}}}',
     );
   });
 });
