@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 import { PowerRegression } from '..';
 
 describe('Power regression', () => {
@@ -55,7 +57,7 @@ describe('Power regression', () => {
     });
 
     expect(regression.toLaTeX(4)).toStrictEqual(
-      'f(x) = \\frac{1.000e^{+9}}{x^{1.000e^{-9}}}',
+      String.raw`f(x) = \frac{1.000e^{+9}}{x^{1.000e^{-9}}}`,
     );
   });
 });

@@ -50,7 +50,7 @@ export class PowerRegression extends BaseRegression {
         precision,
       )}}{x^{${maybeToPrecision(-this.B, precision)}}}`;
     }
-    latex = latex.replace(/e([+-]?[0-9]+)/g, 'e^{$1}');
+    latex = latex.replaceAll(/e([+-]?[0-9]+)/g, 'e^{$1}');
     return latex;
   }
 
